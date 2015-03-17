@@ -36,5 +36,8 @@ describe('browser.info.js', function () {
             }));
         });
 
+        it('get all resolver info', inject(function (browserInfo) {
+           expect(browserInfo.getInfo()).toEqual(resolver);
+        }));
     });
 });
