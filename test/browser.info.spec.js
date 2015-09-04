@@ -3,6 +3,32 @@ describe('browser.info.js', function () {
 
     var resolver = bowser;
 
+    describe('on run', function () {
+        var runner, body, browserInfo;
+
+        beforeEach(inject(function ($document, browserInfoRunner, _browserInfo_) {
+            runner = browserInfoRunner;
+            browserInfo = _browserInfo_;
+            body = $document.find('body');
+        }));
+
+        it('add class to body when browser is mobile', function () {
+            browserInfo.mobile = true;
+
+            runner.run();
+
+            expect(body.hasClass('mobile')).toBeTruthy();
+        });
+
+        it('no mobile class on body when browser is not mobile', function () {
+            browserInfo.mobile = false;
+
+            runner.run();
+
+            expect(body.hasClass('mobile')).toBeFalsy();
+        });
+    });
+
     describe('browserInfo service', function () {
 
         describe('on mobile (phone) device', function () {
