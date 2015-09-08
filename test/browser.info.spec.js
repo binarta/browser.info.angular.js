@@ -20,12 +20,21 @@ describe('browser.info.js', function () {
             expect(body.hasClass('mobile')).toBeTruthy();
         });
 
+        it('add class to body when browser is tablet', function () {
+            browserInfo.tablet = true;
+
+            runner.run();
+
+            expect(body.hasClass('tablet')).toBeTruthy();
+        });
+
         it('no mobile class on body when browser is not mobile', function () {
             browserInfo.mobile = false;
 
             runner.run();
 
             expect(body.hasClass('mobile')).toBeFalsy();
+            expect(body.hasClass('tablet')).toBeFalsy();
         });
     });
 
@@ -34,20 +43,24 @@ describe('browser.info.js', function () {
         describe('on mobile (phone) device', function () {
             beforeEach(function () {
                 resolver.mobile = true;
+                resolver.tablet = false;
             });
 
-            it('mobile should be true', inject(function (browserInfo) {
+            it('values are available', inject(function (browserInfo) {
                 expect(browserInfo.mobile).toBeTruthy();
+                expect(browserInfo.tablet).toBeFalsy();
             }));
         });
 
-        describe('on mobile (tablet) device', function () {
+        describe('on tablet device', function () {
             beforeEach(function () {
+                resolver.mobile = false;
                 resolver.tablet = true;
             });
 
-            it('mobile should be true', inject(function (browserInfo) {
-                expect(browserInfo.mobile).toBeTruthy();
+            it('values are available', inject(function (browserInfo) {
+                expect(browserInfo.mobile).toBeFalsy();
+                expect(browserInfo.tablet).toBeTruthy();
             }));
         });
 
@@ -57,8 +70,9 @@ describe('browser.info.js', function () {
                 resolver.tablet = false;
             });
 
-            it('mobile should be true', inject(function (browserInfo) {
+            it('values are available', inject(function (browserInfo) {
                 expect(browserInfo.mobile).toBeFalsy();
+                expect(browserInfo.tablet).toBeFalsy();
             }));
         });
 
