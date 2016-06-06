@@ -1,12 +1,15 @@
 {
   "name": "binarta.browser.info.angular",
-  "main": "./src/browser.info.js",
+  "main": [
+    "./src/browser.info.js",
+    "./sources.json"
+  ],
   "dependencies": {
-    "angular": "1.3.*",
+    "binarta.angularx": "0.*.*",
     "bowser": "~0.7.2"
   },
   "devDependencies": {
-    "angular-mocks": "1.3.*"
+    "angular-mocks": "1.*.*"
   },
   "ignore": [
     "**/.*",

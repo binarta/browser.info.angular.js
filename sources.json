@@ -1,0 +1,6 @@
+{
+  "default": {
+    "browser.info": "bower_components/binarta.browser.info.angular/src/browser.info.js",
+    "bowser": "bower_components/bowser/bowser.js"
+  }
+}
